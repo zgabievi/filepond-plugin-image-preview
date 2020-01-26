@@ -2,6 +2,9 @@ import { fixImageOrientation } from './fixImageOrientation';
 
 // draws the preview image to canvas
 export const createPreviewImage = (data, width, height, orientation) => {
+    
+    // container
+    const container = document.createElement('div');
 
     // can't draw on half pixels
     width = Math.round(width);
@@ -23,6 +26,14 @@ export const createPreviewImage = (data, width, height, orientation) => {
 
     // draw the image
     ctx.drawImage(data, 0, 0, width, height);
+    
+    // caption input
+    const caption = document.createElement('input');
+    caption.type = 'hidden';
+    caption.name = 'caption[]';
+    
+    container.appendChild(canvas);
+    container.appendChild(caption);
 
-    return canvas;
+    return container;
 };
